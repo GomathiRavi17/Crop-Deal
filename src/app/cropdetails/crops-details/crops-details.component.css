@@ -1,0 +1,19 @@
+body{
+    background-image:linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);;
+    color: #000D36;
+    font-family: 'Nunito', sans-serif;
+    height: 700px;
+}
+
+nav {
+    background-color: #525B88;
+    height: 60px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+}
+
+h3,h6{
+    text-align: center;
+    letter-spacing:0.5px;
+}
+

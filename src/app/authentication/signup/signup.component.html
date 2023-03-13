@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+      <div class="container">
+        <a class="navbar-brand text-white">AGRO SPOT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-black"></span>
+        </button>
+
+        <div id="navbarNav">
+          <div></div>
+          <ul class="navbar-nav">
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            &nbsp;<li class="nav-item active">
+              <a class="nav-link text-white" routerLink="/home" style="text-decoration:none;">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="signup-form">
+    <form [formGroup]="signupForm">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon" ><i class="fa fa-user" ></i></span>
+          <input formControlName="username" type="text" class="form-control" [class.is-invalid]="username!.invalid && username!.touched" [class.is-valid]="username!.valid && !username!.errors" name="username" placeholder="Username">
+        </div>
+        <div *ngIf="username!.invalid && username!.touched">
+          <small class="text-danger" *ngIf="username!.errors!['required']">Username is Required</small>
+          <small class="text-danger" *ngIf="username!.errors!['minlength']">Username must contain atleast 3 characters</small>
+          <small class="text-danger" *ngIf="username!.errors!['pattern']">Only
+            Alphabets are Allowed</small>
+          <small class="text-danger" *ngIf="username!.errors!['maxlength']">Username should not exceed 25 characters</small>
+          
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-users"></i></span>
+          <select formControlName="roles" class="form-control" name="roles" (click)="validateTopic(roles!.value)" [class.is-invalid]="roleHasError && roles!.touched" [class.is-valid]="!roleHasError && roles!.touched">
+            <option value="default" selected>Role</option>
+            <option value="ROLE_FARMER">Farmer</option>
+            <option  value="ROLE_DEALER">Dealer</option>
+          </select>
+        </div>
+        <small class="text-danger" [class.d-none]="!roleHasError || roles!.untouched">Please Choose a Role</small>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input  formControlName="password" type="password" class="form-control" name="password" placeholder="Password" [class.is-invalid]="password!.invalid && (password!.errors && password!.touched)" [class.is-valid]="password!.valid && (!password!.errors && password!.touched)">
+        </div>
+        <div *ngIf="password!.invalid && (password!.errors && password!.touched)">
+          <small class="text-danger" *ngIf="password!.invalid && password!.errors!['required']">Password is required</small>
+          <small class="text-danger" *ngIf="password!.invalid && password!.errors!['minlength']">Password must be atleast 8 characters long</small>
+          <small class="text-danger" *ngIf="password!.invalid && password!.errors!['pattern']"> Password must contain at least one uppercase, one lowercase, and one number</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-lock"></i>
+            <i class="fa fa-check"></i>
+          </span>
+          <input formControlName="confirmPassword" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
+            required [class.is-invalid]="confirmPassword!.invalid && confirmPassword!.touched" [class.is-valid]="confirmPassword!.valid && !confirmPassword!.errors">
+        </div>
+        <div *ngIf="confirmPassword!.invalid && confirmPassword!.touched">
+          <small class="text-danger" *ngIf="confirmPassword!.errors!['required']">Confirm Password is required</small>
+          <small class="text-danger" *ngIf="confirmPassword!.errors!['matching']">Password doesn't match</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="button" (click)="onSubmit()"  class="btn btn-primary btn-block btn-lg">Sign Up</button>
+      </div>
+    </form>
+    <div class="text-center" style="color: white; font-size: 18px; font-weight: bold;">Already have an account? <a routerLink="/login" style="color: white;">Login Here</a></div>
+  </div>
+  <footer class="text-center text-white fixed-bottom">
+   
+    <div class="text-center p-3" style="background-color:#217C7E;">
+        © 2023 Copyright:
+        <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+    </div>
+  
+  </footer>
+</body>
+</html>

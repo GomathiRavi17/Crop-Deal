@@ -1,0 +1,72 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+      <div class="container">
+        <a class="navbar-brand text-white">AGRO SPOT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-black"></span>
+        </button>
+
+        <div id="navbarNav">
+          <div class="mx-auto"></div>
+          <ul class="navbar-nav">
+            &nbsp; &nbsp;<li class="nav-item">
+              <a class="nav-link text-white" [routerLink]="['/dealer-dashboard',dname]">Dashboard</a>
+            </li>
+            &nbsp; &nbsp;<li class="nav-item">
+              <a class="nav-link text-white" [routerLink]="['/dealer/viewcrops',dname]">View Crops</a>
+            </li>
+            &nbsp; &nbsp;<li class="nav-item active">
+              <a class="nav-link text-white" role="button" (click)="logout()">Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header><br><br><br><br>
+  <div class="card mb-2 mx-auto" style="width:600px;">
+    <div class="header p-2 mt-2">
+      <h5 clas="heading">Cart</h5>
+      <span class="action"><a role="button" (click)="removeall()">Remove All</a></span>
+    </div>
+    <div class="card-body " *ngFor="let crop of cartItems">
+      <div class="row">
+        <div class="col d-flex justify-content-center my-auto">
+          <img [src]="crop.image" class="rounded-circle" height="100px;">
+        </div>
+        <div class="col d-flex justify-content-center my-auto" style="vertical-align: middle;">
+          Crop: {{crop.name | titlecase}}<br>
+          Qty: {{crop.quantity}}<br>
+        <!-- <a role="button" class="text-success" id="icon1" (click)="removeItem(crop)"><i class="material-icons">&#xe15b;</i></a> -->
+        <!-- <span style="font-size: 15px;" class="text-success"><b>{{crop.quantity}}</b></span> -->
+        <!-- <a role="button" class="text-success" id="icon2" (click)="addItem(crop)"><i class="material-icons">&#xe145;</i></a><br> -->
+          Price: {{crop.price | currency: "INR"}}
+        </div>
+        <div class="col d-flex justify-content-center my-auto" style="vertical-align: middle;">
+          <a role="button" class="text-danger" (click)="removeCartItem(crop.cid)"><i class="material-icons"
+              style="vertical-align:middle; font-size:25px; margin-left:10px;">&#xe872;</i></a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col" style="margin-left: 410px;float:right;margin-bottom:10px;">
+        Total Price: {{totalPrice | currency:"INR"}} <br>
+        <a class="btn btn-success mt-2 button" id="checkOut" [class.disabled]="this.cartItems.length==0">Check Out</a>
+      </div>
+    </div>
+  </div>
+  <footer class="text-center text-white fixed-bottom">
+   
+    <div class="text-center p-3" style="background-color: #378805;">
+        © 2023 Copyright:
+        <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+    </div>
+  
+  </footer>
+</body>

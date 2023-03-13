@@ -1,0 +1,206 @@
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+            <div class="container">
+                <a class="navbar-brand text-white">AGRO SPOT</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-black"></span>
+                </button>
+
+                <div id="navbarNav">
+                    <div class="mx-auto"></div>
+                    <ul class="navbar-nav">
+                        &nbsp; &nbsp;<li class="nav-item">
+                            <a class="nav-link text-white" (click)="navigate()">Dashboard</a>
+                        </li>
+                        &nbsp; &nbsp;<li class="nav-item active">
+                            <a class="nav-link text-white" role="button" (click)="logout()">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="card shadow-lg p-3 bg-white rounded" style="width: 500px;">
+            <h2 class="text-center">Add your Details</h2>
+            <div class="card-body">
+                <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label for="name">Name</label>
+                            <input formControlName="name" type="text" class="form-control" id="name"
+                                placeholder="Dealer Name" readonly>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Email Address"
+                                [class.is-invalid]="email!.invalid && (email!.errors && email!.touched)"
+                                [class.is-valid]="email!.valid && (!email!.errors && email!.touched)">
+                            <div *ngIf="email!.invalid && (email!.errors && email!.touched)">
+                                <small class="text-danger" *ngIf="email!.invalid && email!.errors['required']">Email is
+                                    Required</small>
+                                <small class="text-danger" *ngIf="email!.invalid && email!.errors['pattern']">Enter a
+                                    Valid Email Address</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label for="image">Image</label>
+                            <input formControlName="image" type="text" class="form-control" id="image"
+                                placeholder="Image Url"
+                                [class.is-invalid]="image!.invalid && (image!.errors && image!.touched)"
+                                [class.is-valid]="image!.valid && (!image!.errors && image!.touched)">
+                            <div *ngIf="image!.invalid && (image!.errors && image!.touched)">
+                                <small class="text-danger" *ngIf="image!.invalid && image!.errors['required']">Image Url
+                                    is
+                                    Required</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="contact">Contact</label>
+                            <input formControlName="contact" type="text" class="form-control" id="contact"
+                                placeholder="Contact"
+                                [class.is-invalid]="contact!.invalid && (contact!.errors && contact!.touched)"
+                                [class.is-valid]="contact!.valid && (!contact!.errors && contact!.touched)">
+                            <div *ngIf="contact!.invalid && (contact!.errors && contact!.touched)">
+                                <small class="text-danger"
+                                    *ngIf="contact!.invalid && contact!.errors['required']">Contact is
+                                    Required</small>
+                                <small class="text-danger" *ngIf="contact!.invalid && contact!.errors['pattern']">Only
+                                    Numbers are Allowed</small>
+                                <small class="text-danger"
+                                    *ngIf="contact!.invalid && ( contact!.errors['minlength'] || contact!.errors['maxlength'])">Contact
+                                    should be 10 digits</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div formGroupName="address">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="houseno">House No</label>
+                                <input formControlName="houseNo" type="text" class="form-control" id="houseno"
+                                    placeholder="House No"
+                                    [class.is-invalid]="houseNo!.invalid && (houseNo!.errors && houseNo!.touched)"
+                                    [class.is-valid]="houseNo!.valid && (!houseNo!.errors && houseNo!.touched)">
+                                <div *ngIf="houseNo!.invalid && (houseNo!.errors && houseNo!.touched)">
+                                    <small class="text-danger"
+                                        *ngIf="houseNo!.invalid && houseNo!.errors['required']">House No is
+                                        Required</small>
+                                    <small class="text-danger"
+                                        *ngIf="houseNo!.invalid && houseNo!.errors['pattern']">Only
+                                        Alphanumeric Characters are Allowed</small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="street">Street</label>
+                                <input formControlName="street" type="text" class="form-control" id="street"
+                                    placeholder="Street"
+                                    [class.is-invalid]="street!.invalid && (street!.errors && street!.touched)"
+                                    [class.is-valid]="street!.valid && (!street!.errors && street!.touched)">
+                                <div *ngIf="street!.invalid && (street!.errors && street!.touched)">
+                                    <small class="text-danger"
+                                        *ngIf="street!.invalid && street!.errors['required']">Street is
+                                        Required</small>
+                                    <small class="text-danger" *ngIf="street!.invalid && street!.errors['pattern']">Only
+                                        Alphanumeric Characters are Allowed</small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="city">City</label>
+                                <input formControlName="city" type="text" class="form-control" id="city"
+                                    placeholder="City"
+                                    [class.is-invalid]="city!.invalid && (city!.errors && city!.touched)"
+                                    [class.is-valid]="city!.valid && (!city!.errors && city!.touched)">
+                                <div *ngIf="city!.invalid && (city!.errors && city!.touched)">
+                                    <small class="text-danger" *ngIf="city!.invalid && city!.errors['required']">City is
+                                        Required</small>
+                                    <small class="text-danger" *ngIf="city!.invalid && city!.errors['pattern']">Only
+                                        Alphabets are Allowed</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label for="district">District</label>
+                                <input formControlName="district" type="text" class="form-control" id="district"
+                                    placeholder="District"
+                                    [class.is-invalid]="district!.invalid && (district!.errors && district!.touched)"
+                                    [class.is-valid]="district!.valid && (!district!.errors && district!.touched)">
+                                <div *ngIf="district!.invalid && (district!.errors && district!.touched)">
+                                    <small class="text-danger"
+                                        *ngIf="district!.invalid && district!.errors['required']">District is
+                                        Required</small>
+                                    <small class="text-danger"
+                                        *ngIf="district!.invalid && district!.errors['pattern']">Only
+                                        Alphabets are Allowed</small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="state">State</label>
+                                <input formControlName="state" type="text" class="form-control" id="state"
+                                    placeholder="State"
+                                    [class.is-invalid]="state!.invalid && (state!.errors && state!.touched)"
+                                    [class.is-valid]="state!.valid && (!state!.errors && state!.touched)">
+                                <div *ngIf="state!.invalid && (state!.errors && state!.touched)">
+                                    <small class="text-danger" *ngIf="state!.invalid && state!.errors['required']">State
+                                        is
+                                        Required</small>
+                                    <small class="text-danger" *ngIf="state!.invalid && state!.errors['pattern']">Only
+                                        Alphabets are Allowed</small>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label for="pincode">Pincode</label>
+                                <input formControlName="pincode" type="text" class="form-control" id="pincode"
+                                    placeholder="Pincode"
+                                    [class.is-invalid]="pincode!.invalid && (pincode!.errors && pincode!.touched)"
+                                    [class.is-valid]="pincode!.valid && (!pincode!.errors && pincode!.touched)">
+                                <div *ngIf="pincode!.invalid && (pincode!.errors && pincode!.touched)">
+                                    <small class="text-danger"
+                                        *ngIf="pincode!.invalid && pincode!.errors['required']">Pincode is
+                                        Required</small>
+                                    <small class="text-danger"
+                                        *ngIf="pincode!.invalid && (pincode!.errors['minlength'] || pincode!.errors['maxlength'])">Pincode
+                                        should be 6 digits</small>
+                                    <small class="text-danger"
+                                        *ngIf="pincode!.invalid && pincode!.errors['pattern']">Only
+                                        Numbers are Allowed</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="about">About</label>
+                        <textarea formControlName="about" class="form-control" id="about" rows="2"
+                            [class.is-invalid]="about!.invalid && (about!.errors && about!.touched)"
+                            [class.is-valid]="about!.valid && (!about!.errors && about!.touched)"></textarea>
+                        <div *ngIf="about!.invalid && (about!.errors && about!.touched)">
+                            <small class="text-danger" *ngIf="about!.invalid && about!.errors['required']">About is
+                                Required</small>
+                            <small class="text-danger" *ngIf="about!.invalid && about!.errors['pattern']">Only
+                                Alphabets are Allowed</small>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 col-4 mx-auto">
+                        <button type="submit" [disabled]="addForm.invalid || addForm.errors"
+                            [class.disabled]="addForm.invalid || addForm.errors"><b>Save</b></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center text-white fixed-bottom">
+   
+        <div class="text-center p-3" style="background-color: #378805;">
+            © 2023 Copyright:
+            <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+        </div>
+      
+      </footer>
+</body>

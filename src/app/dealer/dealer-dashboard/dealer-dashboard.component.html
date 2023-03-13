@@ -1,0 +1,44 @@
+<header>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+    <div class="container">
+        <a class="navbar-brand text-white">AGRO SPOT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-black"></span>
+        </button>
+
+        <div id="navbarNav">
+            <div class="mx-auto"></div>
+            <ul class="navbar-nav">
+                &nbsp; &nbsp;<li class="nav-item">
+                    <a class="nav-link text-white" [routerLink]="['/dealer/viewcrops',dname]">View Crops</a>
+                </li>
+                &nbsp; &nbsp;<li class="nav-item active">
+                    <a class="nav-link text-white" role="button" (click)="logout()">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+<br><br>
+
+<div class="m-4">
+    <div class="card mx-auto shadow p-3 mb-5 bg-body rounded" style="width: 500px;">
+        <img src="/assets/images/dealer.jpg" class="card-img-top" alt="Sample Image">
+        <div class="card-body text-center">
+            <h5 class="card-title">Welcome, {{dname | titlecase}}</h5>
+            <a [routerLink]="['/dealer/add', dname]" class="btn btn-info m-2 text-white" [class.d-none]="isProfileAdded">Add Profile</a>
+            <a [routerLink]="['/dealer/view',dname]" class="btn btn-primary">View Profile</a>
+        </div>
+    </div>
+</div>
+<footer class="text-center text-white fixed-bottom">
+   
+    <div class="text-center p-3" style="background-color: #378805;">
+        © 2023 Copyright:
+        <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+    </div>
+  
+  </footer>
+<router-outlet></router-outlet>

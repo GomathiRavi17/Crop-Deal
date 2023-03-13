@@ -1,0 +1,70 @@
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+            <div class="container">
+                <a class="navbar-brand text-white" href="#">AGRO SPOT</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-black"></span>
+                </button>
+        
+                <div id="navbarNav">
+                    <div class="mx-auto"></div>
+                    <ul class="navbar-nav">
+                        &nbsp; &nbsp;<li class="nav-item">
+                            <a class="nav-link text-white" [routerLink]="['/farmer-dashboard',name]">Dashboard</a>
+                        </li>
+                        &nbsp; &nbsp;<li class="nav-item">
+                            <a class="nav-link text-white"  [routerLink]="['/cropdetails/add',name]">Add Crop</a>
+                        </li>
+                        &nbsp; &nbsp;<li class="nav-item active">
+                            <a class="nav-link text-white" role="button" (click)="logout()">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="card shadow-lg p-3 bg-white rounded" style="width: 600px">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Crop Name</td>
+                        <td>Price</td>
+                        <td>Location</td>
+                        <td>Contact</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let crop of cropDetails">
+                    <td>{{crop.cid}}</td>
+                    <td>{{crop.name}}</td>
+                    <td>{{crop.price}}</td>
+                    <td>{{crop.location}}</td>
+                    <td>{{crop.contact}}</td>
+                    <td>
+                        <a class="edit" style="text-decoration:none; cursor: pointer; color:#000D36"
+                          [routerLink]="['/cropdetails/edit', name, crop.cid]"><i class="material-icons"
+                          title="Edit">&#xE254;</i></a>
+                        <span class="text-danger" style="cursor:pointer;" (click)="deleteCrop(crop,name)"><i class="material-icons" title="Delete">&#xE872;</i></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer class="text-center text-white fixed-bottom">
+   
+        <div class="text-center p-3" style="background-color:#525B88;">
+            © 2023 Copyright:
+            <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+        </div>
+    
+    </footer>
+</body>

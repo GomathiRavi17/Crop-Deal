@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farmers List</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+      <div class="container">
+        <a class="navbar-brand text-white">AGRO SPOT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon text-black"></span>
+        </button>
+
+        <div id="navbarNav">
+          <div class="mx-auto"></div>
+          <ul class="navbar-nav">
+            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+						&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<li class="nav-item">
+              <a class="nav-link text-white" routerLink="/admin-dashboard" style="text-decoration:none;" >Dashboard</a>
+            </li>
+            &nbsp; &nbsp;<li class="nav-item active">
+              <a class="nav-link text-white" role="button" (click)="logout()" style="text-decoration:none;">Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-xs-6">
+              <h2>Dealers</h2>
+            </div>
+            <!-- <div class="col-xs-6">
+							<a class="btn btn-success" routerLink="/farmer/add"><i class="material-icons">&#xE147;</i> <span>Add New Farmer</span></a>					
+						</div> -->
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dealer of dealers">
+              <td>{{dealer.did}}</td>
+              <td>{{dealer.name | titlecase}}</td>
+              <td>{{dealer.email}}</td>
+              <td>{{dealer.address.district | titlecase}}</td>
+              <td>{{dealer.contact}}</td>
+              <td>
+                <a class="view text-info" [routerLink]="['/dealer/view', dealer.name]"><i class="material-icons"
+                    title="View">&#xf1c5;</i></a>
+                <a class="edit text-warning" [routerLink]="['/dealer/edit', dealer.name]"><i class="material-icons"
+                    title="Edit">&#xE254;</i></a>
+                <span class="delete text-danger" style="cursor:pointer;"><i class="material-icons" title="Delete"
+                    title="Delete" (click)="delete(dealer.did)">&#xE872;</i></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

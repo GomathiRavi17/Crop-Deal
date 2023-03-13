@@ -1,0 +1,11 @@
+nav {
+    background-color: #525B88;
+    height: 60px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+}

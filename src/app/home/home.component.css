@@ -1,0 +1,165 @@
+nav {
+    background-color: #1C6758;
+    height: 60px;
+    font-size: 18px;
+}
+
+#pageTitle {
+    font-size: 50px;
+}
+
+.banner-image {
+    background-image: url('/assets/images/banner.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.text-size-h1
+{
+    font-size: 50px;
+}
+.text-grey
+{
+    color: white;
+}
+
+.button-css {
+    border: 2px solid #fff;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 35px;
+    color: white;
+    background: transparent;
+}
+
+.button-css:hover {
+    box-shadow: 0px 0px 10px rgb(255, 255, 255), 0px 0px 10px rgb(255, 255, 255, 1);
+    background-color: rgb(253, 253, 253);
+    background: transparent;
+}
+
+.div-left,
+.div-right {
+    width: 50%;
+}
+
+.div-left {
+    float: left;
+    left: 0;
+}
+
+.div-right {
+    float: right;
+    text-align: center;
+    right: 0;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 0.5rem;
+    grid-template-areas:
+        'img-1 img-2'
+        'img-1 img-3';
+
+}
+
+
+.inner {
+    overflow: hidden;
+}
+
+.inner img {
+    transition: all 1.5s ease;
+}
+
+.inner:hover img {
+    transform: scale(1.5);
+}
+
+.contact-us {
+    padding: 70px 0px;
+    background: #3D8361;
+}
+
+
+.button-css-contact {
+    border: 2px solid #1C6758;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 35px;
+    color: #1C6758;
+    background-color: transparent;
+}
+
+.button-css-contact:hover {
+    box-shadow: 0px 0px 10px rgb(245, 245, 245), 0px 0px 10px rgb(243, 243, 243);
+    background-color: #1C6758;
+    color: white;
+
+}
+
+.section-title h2 {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    border-bottom: 5px solid #af8070;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.section-title p {
+    color: #e8e8e8;
+    margin-bottom: 30px;
+}
+
+.contact-us input,
+.contact-us textarea {
+    background: #fafafa;
+}
+
+.contact-us textarea {
+    min-height: 188px;
+    max-width: 100%;
+}
+
+.contact-us .map {
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.button-css-contact-form {
+    border: 2px solid rgb(253, 252, 252);
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px 35px;
+    color: white;
+    background-color: #1C6758;
+}
+
+.button-css-contact-form:hover {
+    box-shadow: 0px 0px 10px rgb(245, 245, 245), 0px 0px 10px rgb(243, 243, 243);
+    background-color: white;
+    color: #1C6758;
+
+}
+
+.carousel-item {
+    min-height: 280px;
+}
+
+body{
+    height:2570px;
+}

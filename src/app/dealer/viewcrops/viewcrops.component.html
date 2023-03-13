@@ -1,0 +1,65 @@
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+        <div class="container">
+            <a class="navbar-brand text-white">AGRO SPOT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-black"></span>
+            </button>
+
+            <div id="navbarNav">
+                <div class="mx-auto"></div>
+                <ul class="navbar-nav">
+                    &nbsp; &nbsp;<li class="nav-item">
+                        <a class="nav-link text-white" [routerLink]="['/dealer-dashboard',dname]" role="button"
+                            id="dashboard">Dashboard</a>
+                    </li>
+                    &nbsp; &nbsp;<li class="nav-item">
+                        <a class="nav-link text-white" [routerLink]="['/dealer/cart',dname]" role="button" id="cart"><i
+                                class="material-icons">&#xe8cc;</i>
+                            <span id="badge">{{cartItems}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" id="logout" class="nav-link text-white" (click)="logout()">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav><br>
+    <br><br>
+    <div id="alert" class="mx-auto" style="width: 250px;"></div>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let crop of crops">
+            <div class="card m-2 p-2 rounded" style="width: 300px; height: 550px;">
+                <img class="card-img-top rounded-circle" [src]="crop.image" height="300px;">
+                <div class="card-body text-center">
+                    Name: {{crop.name | titlecase}}<br>
+                    Type: {{crop.cropType | titlecase}}<br>
+                    Price: {{crop.price | currency: "INR"}} per Kg<br>
+                    <!-- Farmer Name: {{crop.fname}} <br> -->
+                    Location: {{crop.location | titlecase}}<br>
+                    <!-- Contact: {{crop.contact}} <br> -->
+                    <a role="button" class="mb-2 text-success" id="icon1" (click)="removeItem(crop)"><i
+                            class="material-icons">&#xe15b;</i></a>
+                    <span style="font-size: 15px;" class="text-success"><b>{{crop.quantity}}</b></span>
+                    <a role="button" class="mb-2 text-success" id="icon2" (click)="addItem(crop)"><i
+                            class="material-icons">&#xe145;</i></a><br>
+                    <button class="btn btn-success" (click)="addtoCart(crop)" id="addToCart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center text-white fixed-bottom">
+
+        <div class="text-center p-3" style="background-color: #378805;">
+            © 2023 Copyright:
+            <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+        </div>
+
+    </footer>
+</body>

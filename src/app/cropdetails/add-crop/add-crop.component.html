@@ -1,0 +1,173 @@
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
+            <div class="container">
+                <a class="navbar-brand text-white">AGRO SPOT</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon text-black"></span>
+                </button>
+        
+                <div id="navbarNav">
+                    <div class="mx-auto"></div>
+                    <ul class="navbar-nav">
+                        &nbsp; &nbsp;<li class="nav-item">
+                            <a class="nav-link text-white" (click)="navigate()">Dashboard</a>
+                        </li>
+                        &nbsp; &nbsp;<li class="nav-item">
+                            <a class="nav-link text-white" (click)="viewCrops()">View Crops</a>
+                        </li>
+                        &nbsp; &nbsp;<li class="nav-item active">
+                            <a class="nav-link text-white" role="button" (click)="logout()">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="card shadow-lg p-3 bg-white rounded" style="width: 550px">
+    <h2 class="text-center">Add Crop Details</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-2">
+        <div class="col">
+            <label for="fname">Farmer Name</label>
+            <input formControlName="fname" type="text" class="form-control" id="fname" placeholder="Farmer Name">
+        </div>
+        <div class="col">
+            <label for="name">Crop Name</label>
+            <input formControlName="name" type="text" class="form-control" id="name" placeholder="Crop Name"  [class.is-invalid]="name!.invalid && (name!.errors && name!.touched)"
+            [class.is-valid]="name!.valid && (!name!.errors && name!.touched)">
+            <div *ngIf="name!.invalid && (name!.errors && name!.touched)">
+                <small class="text-danger"
+                    *ngIf="name!.invalid && name!.errors['required']">Crop Name is
+                    Required</small>
+                <small class="text-danger"
+                    *ngIf="name!.invalid && name!.errors['pattern']">Only
+                    Alphabets are Allowed</small>
+            </div>
+        </div>
+        </div>
+        <div class="row mb-2">
+        <div class="col">
+            <label for="image">Image</label>
+            <input formControlName="image" type="text" class="form-control" id="image" placeholder="Image Url"  [class.is-invalid]="image!.invalid && (image!.errors && image!.touched)"
+            [class.is-valid]="image!.valid && (!image!.errors && image!.touched)">
+            <div *ngIf="image!.invalid && (image!.errors && image!.touched)">
+                <small class="text-danger"
+                    *ngIf="image!.invalid && image!.errors['required']">Image Url is
+                    Required</small>
+            </div>
+        </div>
+        <div class="col">
+            <label for="croptype">Crop Type</label>
+        <select formControlName="cropType" id="cropType" class="form-select" placeholder="Crop Type">
+            <option value="Vegetable">Vegetable</option>
+            <option value="Fruit">Fruit</option>
+            <option value="Cereals">Cereals</option>
+        </select>
+        </div>
+        </div>
+        <div class="row mb-2">
+        <div class="col">
+            <label for="desc">Description</label>
+        <input formControlName="desc" type="text" class="form-control" id="desc" placeholder="Description"  [class.is-invalid]="desc!.invalid && (desc!.errors && desc!.touched)"
+        [class.is-valid]="desc!.valid && (!desc!.errors && desc!.touched)">
+        <div *ngIf="desc!.invalid && (desc!.errors && desc!.touched)">
+            <small class="text-danger"
+                *ngIf="desc!.invalid && desc!.errors['required']">Description is
+                Required</small>
+                <small class="text-danger"
+                *ngIf="desc!.invalid && desc!.errors['maxlength']">Description should not
+                exceed 100 characters</small>
+                <small class="text-danger"
+                *ngIf="desc!.invalid && desc!.errors['minlength']">Description should contain
+                atleast 20 characters</small>
+            <small class="text-danger"
+                *ngIf="desc!.invalid && desc!.errors['pattern']">Only
+                Alphabets are Allowed</small>
+        </div>
+        </div>
+
+        <div class="col">
+            <label for="price">Price</label>
+        <input formControlName="price" type="number" class="form-control" id="price" placeholder="Price"  [class.is-invalid]="price!.invalid && (price!.errors && price!.touched)"
+        [class.is-valid]="price!.valid && (!price!.errors && price!.touched)">
+        <div *ngIf="price!.invalid && (price!.errors && price!.touched)">
+            <small class="text-danger"
+                *ngIf="price!.invalid && price!.errors['required']">Price is
+                Required</small>
+            <small class="text-danger"
+                *ngIf="price!.invalid && price!.errors['min']">Minimum price should be atleast 10</small>
+        </div>
+        </div>
+        </div>
+        <div class="row mb-2">
+        <div class="col">
+            <label for="quantity">Quantity</label>
+        <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Quantity"  [class.is-invalid]="quantity!.invalid && quantity!.touched"
+        [class.is-valid]="quantity!.valid && quantity!.touched">
+        <div *ngIf="quantity!.invalid && (quantity!.errors && quantity!.touched)">
+            <small class="text-danger"
+                *ngIf="quantity!.invalid && quantity!.errors['required']">Quantity is
+                Required</small>
+            <small class="text-danger"
+                *ngIf="quantity!.invalid && quantity!.errors['min']">Minimum Quantity should be atleast 1</small>
+        </div>
+       
+        </div>
+
+        <div class="col">
+            <label for="available">Available</label>
+            <select formControlName="available" type="text" class="form-select" id="available">
+                <option value="true">Available</option>
+                <option value="false">Unavailable</option>
+            </select>
+        </div>
+        </div>
+        <div class="row mb-2">
+        <div class="col">
+            <label for="location">Location</label>
+            <input formControlName="location" type="text" class="form-control" id="location" placeholder="Location"  [class.is-invalid]="location!.invalid && (location!.errors && location!.touched)"
+            [class.is-valid]="location!.valid && (!location!.errors && location!.touched)">
+            <div *ngIf="location!.invalid && (location!.errors && location!.touched)">
+                <small class="text-danger"
+                    *ngIf="location!.invalid && location!.errors['required']">Location is
+                    Required</small>
+                <small class="text-danger"
+                    *ngIf="location!.invalid && location!.errors['pattern']">Only
+                    Alphabets are Allowed</small>
+            </div>
+        </div>
+
+        <div class="col">
+            <label for="contact">Contact</label>
+            <input formControlName="contact" type="text" class="form-control" id="contact" placeholder="Contact"  [class.is-invalid]="contact!.invalid && (contact!.errors && contact!.touched)"
+            [class.is-valid]="contact!.valid && (!contact!.errors && contact!.touched)">
+            <div *ngIf="contact!.invalid && (contact!.errors && contact!.touched)">
+                <small class="text-danger"
+                    *ngIf="contact!.invalid && contact!.errors['required']">Contact is
+                    Required</small>
+                <small class="text-danger"
+                    *ngIf="contact!.invalid && contact!.errors['pattern']">Only
+                    Numbers are Allowed</small>
+                <small class="text-danger"
+                    *ngIf="contact!.invalid && ( contact!.errors['minlength'] || contact!.errors['maxlength'])">Contact should be 10 digits</small>
+            </div>
+        </div>
+       </div>
+       <div class="d-grid gap-2 mt-4 col-4 mx-auto">
+        <button type="submit"  [disabled]="addForm.invalid || addForm.errors" [class.disabled]="addForm.invalid || addForm.errors"><b>Add Crop</b></button>
+        </div>
+    </form>
+</div>
+</div>
+<footer class="text-center text-white fixed-bottom">
+   
+    <div class="text-center p-3" style="background-color:#525B88;">
+        © 2023 Copyright:
+        <a class="text-white" href="/home" style="text-decoration:none;">AGROSPOT</a>
+    </div>
+
+</footer>
+</body>
